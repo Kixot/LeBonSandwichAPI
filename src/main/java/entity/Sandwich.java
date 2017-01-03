@@ -7,6 +7,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @Entity
 @XmlRootElement
@@ -20,6 +21,7 @@ public class Sandwich implements Serializable {
     @Id
     private String id;
     private String nom;
+    private ArrayList<Ingredient> ingredients;
 
     public Sandwich() {}
 
@@ -44,5 +46,11 @@ public class Sandwich implements Serializable {
         this.nom = nom;
     }
 
+    public ArrayList<Ingredient> getIngredients() {
+        return ingredients;
+    }
 
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 }
