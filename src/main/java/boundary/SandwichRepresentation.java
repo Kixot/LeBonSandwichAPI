@@ -21,10 +21,9 @@ public class SandwichRepresentation {
     @Path("/{sandwichId}")
     public Response getSandwich(@PathParam("sandwichId") String sandwichId) {
         Sandwich s = this.sandwichResource.findById(sandwichId);
-        if (s != null) {
+        if (s != null)
             return Response.ok(s).build();
-        } else {
+        else
             return Response.status(Response.Status.NOT_FOUND).build();
-        }
     }
 }
