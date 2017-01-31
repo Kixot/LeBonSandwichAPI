@@ -9,10 +9,7 @@ import java.io.Serializable;
 
 @Entity
 @XmlRootElement
-@NamedQuery(name = "findAll", query = "SELECT i FROM Ingredient i")
-@NamedQueries({
-        @NamedQuery(name = "Ingredient.findAll", query = "SELECT i FROM Ingredient i")
-})
+@NamedQuery(name = "Ingredient.FindAll", query = "SELECT i FROM Ingredient i")
 public class Ingredient implements Serializable{
     private static final long serialVersionUID = 1L;
 
