@@ -12,7 +12,7 @@ import java.util.List;
 public class SandwichResource {
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     public Sandwich findById(String id){
         return this.em.find(Sandwich.class, id);
@@ -20,7 +20,6 @@ public class SandwichResource {
 
     public List<Sandwich> findAll(String sandwichId) {
         Query query = em.createNamedQuery("Sandwich.FindAll", Sandwich.class);
-        List<Sandwich> liste = query.getResultList();
-        return liste;
+        return query.getResultList();
     }
 }
