@@ -19,8 +19,7 @@ public class SandwichResource {
     }
 
     public List<Sandwich> findAll(String sandwichId) {
-        Query query = em.createQuery("SELECT s FROM Sandwich s where s.sandwich.id= :id ");
-        query.setParameter("id", sandwichId);
+        Query query = em.createNamedQuery("Sandwich.FindAll", Sandwich.class);
         List<Sandwich> liste = query.getResultList();
         return liste;
     }
