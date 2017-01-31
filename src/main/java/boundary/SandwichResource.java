@@ -4,7 +4,6 @@ import entity.Sandwich;
 import java.util.List;
 import java.util.UUID;
 import javax.ejb.Stateless;
-import javax.persistence.CacheStoreMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
