@@ -1,3 +1,5 @@
-.idea/
-LeBonSandwich.iml
-target/
+API/.idea/
+API/LeBonSandwich.iml
+API/target/
+Client/.idea/
+Backoffice/.idea/
