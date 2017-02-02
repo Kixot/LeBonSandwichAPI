@@ -17,22 +17,22 @@ import java.util.List;
 public class CategorieRepresentation {
 
     @EJB
-    CategorieResource CategorieResource;
+    CategorieResource categorieResource;
     @EJB
     IngredientResource ingredientResource;
 
     @GET
     public Response getAllCategorie(@Context UriInfo uriInfo){
-        List<Categorie> list_Categorie = this.CategorieResource.findAll();
+        List<Categorie> list_Categorie = this.categorieResource.findAll();
         GenericEntity<List<Categorie>> list = new GenericEntity<List<Categorie>>(list_Categorie) {
         };
         return Response.ok(list, MediaType.APPLICATION_JSON).build();
     }
 
     @GET
-    @Path("/{CategorieId}")
-    public Response getCategorie(@PathParam("CategorieId") String CategorieId){
-        Categorie c = this.CategorieResource.findById(CategorieId);
+    @Path("/{categorieId}")
+    public Response getCategorie(@PathParam("categorieId") String categorieId){
+        Categorie c = this.categorieResource.findById(categorieId);
         if(c != null)
             return Response.ok(c).build();
         else
@@ -41,15 +41,15 @@ public class CategorieRepresentation {
 
     @POST
     public Response addCategorie(Categorie c, @Context UriInfo u){
-        Categorie Categorie = this.CategorieResource.save(c);
-        URI uri = u.getAbsolutePathBuilder().path(Categorie.getId()).build();
-        return Response.created(uri).entity(Categorie).build();
+        Categorie categorie = this.categorieResource.save(c);
+        URI uri = u.getAbsolutePathBuilder().path(categorie.getId()).build();
+        return Response.created(uri).entity(categorie).build();
     }
 
     @DELETE
-    @Path("/{CategorieId}")
-    public void deleteCategorie(@PathParam("CategorieId") String id) {
-        this.CategorieResource.delete(id);
+    @Path("/{categorieId}")
+    public void deleteCategorie(@PathParam("categorieId") String id) {
+        this.categorieResource.delete(id);
     }
 
     @GET

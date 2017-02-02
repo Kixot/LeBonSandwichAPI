@@ -24,6 +24,7 @@ public class Sandwich implements Serializable {
     @ManyToOne
     @JsonManagedReference
     private Pain pain;
+    private float tarif = 0;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sandwich")
     @JsonManagedReference
     private List<Ingredient> ingredients;
@@ -35,6 +36,10 @@ public class Sandwich implements Serializable {
         this.taille = taille;
         this.pain = pain;
         this.ingredients = new ArrayList<Ingredient>();
+    }
+
+    private void calculerTarif(){
+        // TODO
     }
 
     public String getId() {
@@ -79,5 +84,14 @@ public class Sandwich implements Serializable {
 
     public void addIngredient(Ingredient i){
         this.ingredients.add(i);
+        this.calculerTarif();
+    }
+
+    public float getTarif() {
+        return tarif;
+    }
+
+    public void setTarif(float tarif) {
+        this.tarif = tarif;
     }
 }
