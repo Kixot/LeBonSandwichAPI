@@ -5,11 +5,9 @@ import entity.Ingredient;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 import java.net.URI;
+import java.util.List;
 
 @Path("/ingredient")
 @Produces(MediaType.APPLICATION_JSON)
@@ -19,6 +17,14 @@ public class IngredientRepresentation {
 
     @EJB
     IngredientResource ingredientResource;
+
+    @GET
+    public Response getAllIngredient(@Context UriInfo uriInfo){
+        List<Ingredient> list_ingredient = this.ingredientResource.findAll();
+        GenericEntity<List<Ingredient>> list = new GenericEntity<List<Ingredient>>(list_ingredient) {
+        };
+        return Response.ok(list, MediaType.APPLICATION_JSON).build();
+    }
 
     @GET
     @Path("/{ingredientId}")
