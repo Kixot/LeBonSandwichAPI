@@ -1,10 +1,12 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @XmlRootElement
@@ -16,6 +18,9 @@ public class Categorie implements Serializable {
     @Id
     private String id;
     private String nom;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
+    @JsonManagedReference
+    private List<Ingredient> ingredients;
 
     public Categorie(){
 

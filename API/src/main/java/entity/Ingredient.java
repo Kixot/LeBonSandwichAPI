@@ -8,20 +8,15 @@ import java.io.Serializable;
 
 @Entity
 @XmlRootElement
-@NamedQuery(name = "Ingredient.FindAll",query = "SELECT i FROM Ingredient i")
 public class Ingredient implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     private String id;
-
     private String nom;
-    @ManyToOne
-    private Categorie categorie;
-    @ManyToOne
     @JsonBackReference
-    private Sandwich sandwich;
+    private Categorie categorie;
 
     public Ingredient(){}
 

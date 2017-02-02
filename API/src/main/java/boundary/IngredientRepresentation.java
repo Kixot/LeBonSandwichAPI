@@ -1,13 +1,17 @@
 package boundary;
 
+import entity.Categorie;
 import entity.Ingredient;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @Path("/ingredient")
 @Produces(MediaType.APPLICATION_JSON)
@@ -19,14 +23,6 @@ public class IngredientRepresentation {
     IngredientResource ingredientResource;
 
     @GET
-    public Response getAllIngredient(@Context UriInfo uriInfo){
-        List<Ingredient> list_ingredient = this.ingredientResource.findAll();
-        GenericEntity<List<Ingredient>> list = new GenericEntity<List<Ingredient>>(list_ingredient) {
-        };
-        return Response.ok(list, MediaType.APPLICATION_JSON).build();
-    }
-
-    @GET
     @Path("/{ingredientId}")
     public Response getIngredient(@PathParam("ingredientId") String ingredientId){
         Ingredient i = this.ingredientResource.findById(ingredientId);
@@ -36,11 +32,16 @@ public class IngredientRepresentation {
             return Response.status(Response.Status.NOT_FOUND).build();
     }
 
-    @POST
-    public Response addIngredient(Ingredient i, @Context UriInfo u){
-        Ingredient ingredient = this.ingredientResource.save(i);
-        URI uri = u.getAbsolutePathBuilder().path(ingredient.getId()).build();
-        return Response.created(uri).entity(ingredient).build();
+
+    @GET
+    @Path("/{ingredientId}/categorie")
+    public Response getCategorie(@PathParam("ingredientId") String ingredientId){
+        Ingredient i = this.ingredientResource.findById(ingredientId);
+        Categorie c = i.getCategorie();
+        if(c != null)
+            return Response.ok(c).build();
+        else
+            return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @DELETE
