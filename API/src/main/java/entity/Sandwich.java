@@ -1,6 +1,8 @@
 package entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +19,13 @@ public class Sandwich implements Serializable {
     private String id;
     private String nom;
     @ManyToOne
-    @JsonBackReference
+    @JsonManagedReference
     private Taille taille;
     @ManyToOne
-    @JsonBackReference
+    @JsonManagedReference
     private Pain pain;
-    @OneToMany(mappedBy = "sandwich")
-    @JsonBackReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sandwich")
+    @JsonManagedReference
     private List<Ingredient> ingredients;
 
     public Sandwich() {}
@@ -73,5 +75,9 @@ public class Sandwich implements Serializable {
 
     public void setIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public void addIngredient(Ingredient i){
+        this.ingredients.add(i);
     }
 }
