@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,16 +18,17 @@ public class Categorie implements Serializable {
     @Id
     private String id;
     private String nom;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
+    @OneToMany
     @JsonManagedReference
     private List<Ingredient> ingredients;
 
     public Categorie(){
-
+        this.ingredients = new ArrayList<>();
     }
 
     public Categorie(String n){
         this.nom = n;
+        this.ingredients = new ArrayList<>();
     }
 
     public String getNom() {
@@ -40,4 +42,12 @@ public class Categorie implements Serializable {
     }
 
     public void setId(String id){this.id = id;}
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 }

@@ -19,7 +19,7 @@ public class Commande implements Serializable {
     @Id
     private String id;
     private Date dateRetrait;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande")
+    @OneToMany
     @JsonManagedReference
     private List<Sandwich> sandwichs;
 

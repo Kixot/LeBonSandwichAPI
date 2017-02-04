@@ -25,7 +25,7 @@ public class Sandwich implements Serializable {
     @JsonManagedReference
     private Pain pain;
     private float tarif = 0;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sandwich")
+    @OneToMany
     @JsonManagedReference
     private List<Ingredient> ingredients;
 

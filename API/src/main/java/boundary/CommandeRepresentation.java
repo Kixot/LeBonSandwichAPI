@@ -1,8 +1,6 @@
 package boundary;
 
-import entity.Categorie;
 import entity.Commande;
-import entity.Ingredient;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
