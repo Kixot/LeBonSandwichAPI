@@ -29,7 +29,9 @@ public class Sandwich implements Serializable {
     @JsonManagedReference
     private List<Ingredient> ingredients;
 
-    public Sandwich() {}
+    public Sandwich() {
+        this.ingredients = new ArrayList<>();
+    }
 
     public Sandwich(String id, Taille taille, Pain pain) {
         this.id = id;

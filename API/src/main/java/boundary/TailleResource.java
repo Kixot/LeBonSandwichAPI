@@ -25,6 +25,12 @@ public class TailleResource {
         return q.getResultList();
     }
 
+    public Taille ajouterTaille(Taille taille){
+        taille.setId(UUID.randomUUID().toString());
+        this.em.persist(taille);
+        return taille;
+    }
+
     public Taille save(Taille sdw) {
         sdw.setId(UUID.randomUUID().toString());
         return this.em.merge(sdw);
