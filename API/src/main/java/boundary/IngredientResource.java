@@ -21,6 +21,11 @@ public class IngredientResource {
         return this.em.find(Ingredient.class, id);
     }
 
+    public List<Ingredient> findAllIngredients(){
+        Query query = this.em.createNamedQuery("Ingredient.FindAll", Ingredient.class);
+        return query.getResultList();
+    }
+
     public List<Ingredient> findAll(String categorieId){
         Query query = this.em.createQuery("SELECT i FROM Ingredient i where i.categorie.id= :id ");
         query.setParameter("id", categorieId);

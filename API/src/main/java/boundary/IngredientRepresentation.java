@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-@Path("/ingredient")
+@Path("/ingredients")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Stateless
@@ -21,6 +21,15 @@ public class IngredientRepresentation {
 
     @EJB
     IngredientResource ingredientResource;
+
+    @GET
+    public Response getAllIngredients(UriInfo uriInfo){
+        List<Ingredient> list_Ingredient = this.ingredientResource.findAllIngredients();
+        GenericEntity<List<Ingredient>> list = new GenericEntity<List<Ingredient>>(list_Ingredient) {
+        };
+        return Response.ok(list, MediaType.APPLICATION_JSON).build();
+    }
+
 
     @GET
     @Path("/{ingredientId}")

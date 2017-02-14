@@ -15,6 +15,7 @@ public class Ingredient implements Serializable {
     @Id
     private String id;
     private String nom;
+    @ManyToOne
     @JsonBackReference
     private Categorie categorie;
 

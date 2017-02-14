@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body ng-controller="BaseController">
+
+<div>
+    <blockquote><h5>Bienvenue sur la gestion du catalogue</h5></blockquote>
+    <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">list</i>Liste des ingrédients</div>
+            <div class="collapsible-body" ng-bind-html="listeIngredients"></div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
