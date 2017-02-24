@@ -24,7 +24,7 @@ public class Sandwich implements Serializable {
     @ManyToOne
     @JsonManagedReference
     private Pain pain;
-    private float tarif = 0;
+    private float tarif;
     @OneToMany
     @JsonManagedReference
     private List<Ingredient> ingredients;
